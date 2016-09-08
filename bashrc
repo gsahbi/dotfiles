@@ -1,11 +1,11 @@
 #!/bin/sh
 
 # This is for android crap
-export PATH=${PATH}:~/Library/Android/sdk/platform-tools:~/Library/Android/sdk/tools
-export JAVA_HOME=$(/usr/libexec/java_home)
+#export PATH=${PATH}:~/Library/Android/sdk/platform-tools:~/Library/Android/sdk/tools
+#export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=${JAVA_HOME}/bin:$PATH
 export PATH=/usr/local/bin:$PATH
-
+export LC_ALL=C
 
 
 export _Z_DATA="$HOME/z-data"

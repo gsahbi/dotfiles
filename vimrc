@@ -28,34 +28,29 @@
 " Let NeoBundle manage NeoBundle
 " Required:
   call dein#add('Shougo/dein.vim')
-  " syntax
-  call dein#add('othree/yajs.vim', {'on_ft': 'javascript'})
-  call dein#add('othree/jsdoc-syntax.vim', {'on_ft':['javascript', 'typescript']})
-  call dein#add('othree/es.next.syntax.vim', {'on_ft': 'javascript'})
-  call dein#add('1995eaton/vim-better-javascript-completion', {'on_ft': ['javascript']})
-  call dein#add('othree/javascript-libraries-syntax.vim')
-  call dein#add('kchmck/vim-coffee-script', {'on_ft': 'coffee'})
-  call dein#add('hail2u/vim-css3-syntax', {'on_ft':['css','scss']})
+
+" syntax
   call dein#add('elzr/vim-json', {'on_ft': 'json'})
   call dein#add('tpope/vim-markdown', {'on_ft': 'markdown'})
-  call dein#add('dhruvasagar/vim-table-mode')
   call dein#add('suan/vim-instant-markdown', {'on_ft': 'markdown'})
   call dein#add('tmhedberg/SimpylFold', {'on_ft': 'python'})
-  call dein#add('HerringtonDarkholme/yats.vim', {'on_ft': 'typescript'})
-  call dein#add('Quramy/tsuquyomi', {'on_ft': 'typescript'})
-
-  call dein#add('mhartington/oceanic-next')
   call dein#add('Yggdroot/indentLine')
-  call dein#add('Raimondi/delimitMate', {'on_ft': ['javascript', 'typescript', 'css', 'scss']})
-  call dein#add('valloric/MatchTagAlways', {'on_ft': 'html'})
 
+" git
   call dein#add('tpope/vim-fugitive')
   call dein#add('jreybert/vimagit')
   call dein#add('mhinz/vim-signify')
   call dein#add('Xuyuanp/nerdtree-git-plugin')
-  call dein#add('https://github.com/jaxbot/github-issues.vim')
+  call dein#add('jaxbot/github-issues.vim')
+  
+" mine
+  call dein#add('mhartington/oceanic-next')
+  call dein#add('Conque-GDB')
+  call dein#add('scrooloose/syntastic')
+  call dein#add('c.vim')
+  call dein#add('majutsushi/tagbar')
 
-  call dein#add('tpope/vim-repeat')
+" All
   call dein#add('benekastah/neomake')
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('scrooloose/nerdtree')
@@ -64,6 +59,7 @@
   call dein#add('tmux-plugins/vim-tmux')
   call dein#add('tmux-plugins/vim-tmux-focus-events')
   call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
   call dein#add('tpope/vim-surround')
   call dein#add('tomtom/tcomment_vim')
   call dein#add('mattn/emmet-vim', {'on_ft': 'html'})
@@ -74,7 +70,7 @@
   call dein#add('ujihisa/unite-colorscheme')
   call dein#add('junkblocker/unite-codesearch')
   call dein#add('Shougo/vimproc.vim', {'build' : 'make'})
-  call dein#add('Shougo/neocomplete.vim')
+  call dein#add('Shougo/deoplete.nvim')
   call dein#add('Shougo/neco-vim', {'on_ft': 'vim'})
   call dein#add('Shougo/neoinclude.vim')
   call dein#add('ujihisa/neco-look')
@@ -82,15 +78,11 @@
   call dein#add('Shougo/neosnippet.vim')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('honza/vim-snippets')
-  call dein#add('matthewsimo/angular-vim-snippets')
   call dein#add('mhinz/vim-sayonara')
-  call dein#add('mattn/webapi-vim')
-  call dein#add('mattn/gist-vim')
   call dein#add('terryma/vim-multiple-cursors')
   call dein#add('rhysd/github-complete.vim')
   call dein#add('junegunn/goyo.vim')
   call dein#add('vim-scripts/SyntaxRange')
-  call dein#add('zchee/deoplete-go', {'build': 'make'},{'on_ft': 'go'})
   call dein#add('rhysd/nyaovim-popup-tooltip')
   call dein#add('ryanoasis/vim-devicons')
 
@@ -307,6 +299,8 @@ exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' 
 exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
 endfunction
 
+" Close vim if only NERDTree is open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " call NERDTreeHighlightFile('jade', 'green', 'none', 'green', 'none')
 " call NERDTreeHighlightFile('md', 'blue', 'none', '#6699CC', 'none')
