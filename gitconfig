@@ -4,7 +4,6 @@
 [user]
 	name = Sahbi Ben Gdaiem
 	email = sahbi.g@gmail.com
-	signingkey = E890DB47
 [credential]
 	helper = osxkeychain
 [filter "hawser"]
@@ -27,4 +26,4 @@
   newNormal = "green bold"
   newHighlight = "green bold 22"
 [commit]
-  gpgsign = true
+  gpgsign = false
