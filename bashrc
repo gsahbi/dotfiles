@@ -4,7 +4,7 @@
 #export PATH=${PATH}:~/Library/Android/sdk/platform-tools:~/Library/Android/sdk/tools
 #export JAVA_HOME=$(/usr/libexec/java_home)
 export PATH=${JAVA_HOME}/bin:$PATH
-export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/bin:~/.bin:$PATH
 export LC_ALL=C
 
 
