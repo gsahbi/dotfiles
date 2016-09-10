@@ -41,7 +41,7 @@ export PATH=${PATH}:~/Library/Android/sdk/platform-tools:~/Library/Android/sdk/t
 #export JAVA_HOME=$(/usr/libexec/java_home)
 #export PATH=${JAVA_HOME}/bin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH=${PATH}:~/bin
+export PATH=${PATH}:~/.bin
 export ANDROID_HOME=~/Library/Android/sdk
 export PATH=$PATH:$GOPATH/bin
 
