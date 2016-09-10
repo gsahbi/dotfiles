@@ -120,7 +120,7 @@
               \ if line("'\"") > 0 && line ("'\"") <= line("$") |
               \   exe "normal! g'\"" |
               \ endif
-              " center buffer around cursor when opening files
+" center buffer around cursor when opening files
   autocmd BufRead * normal zz
   let g:jsx_ext_required = 0
   set complete=.,w,b,u,t,k
@@ -129,9 +129,9 @@
   autocmd InsertEnter * let save_cwd = getcwd() | set autochdir
   autocmd InsertLeave * set noautochdir | execute 'cd' fnameescape(save_cwd)
   let g:indentLine_char='│'
-  " enable deoplete
+" enable deoplete
 
-  let g:neocomplete#enable_at_startup = 1
+  let g:deoplete#enable_at_startup = 1
   let g:unite_source_codesearch_command = '$HOME/bin/csearch'
   let g:table_mode_corner="|"
 
@@ -190,7 +190,8 @@
   nnoremap <leader>d "_d
   vnoremap <leader>d "_d
   vnoremap <c-/> :TComment<cr>
-  " map <esc> :noh<cr>
+
+map <esc> :noh<cr>
 autocmd FileType typescript nmap <buffer> <Leader>T : <C-u>echo tsuquyomi#hint()<CR>
 
 nnoremap <leader>e :call <SID>SynStack()<CR>
@@ -293,6 +294,8 @@ autocmd StdinReadPre * let s:std_in=1
 let NERDTreeShowHidden=1
 let g:NERDTreeWinSize=45
 let g:NERDTreeAutoDeleteBuffer=1
+let g:NERDTreeQuitOnOpen=1
+let g:NERDTreeIgnore = ['\.pyc$', '\.o$', '\.so$']
 
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
 exec 'autocmd FileType nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -300,7 +303,7 @@ exec 'autocmd FileType nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extens
 endfunction
 
 " Close vim if only NERDTree is open
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " call NERDTreeHighlightFile('jade', 'green', 'none', 'green', 'none')
 " call NERDTreeHighlightFile('md', 'blue', 'none', '#6699CC', 'none')
@@ -493,20 +496,14 @@ set guifont=Sauce\ Code\ Pro\ Nerd\ Font\ Complete:h13
 "}}}
 
 " Linting -------------------------------------------------------------------{{{
-  function! neomake#makers#ft#javascript#eslint()
-      return {
-          \ 'args': ['-f', 'compact'],
-          \ 'errorformat': '%E%f: line %l\, col %c\, Error - %m,' .
-          \ '%W%f: line %l\, col %c\, Warning - %m'
-          \ }
-  endfunction
-  let g:neomake_javascript_enabled_makers = ['eslint']
-  autocmd! BufWritePost * Neomake
-  function! JscsFix()
-      let l:winview = winsaveview()
-      % ! jscs -x
-      call winrestview(l:winview)
-  endfunction
-  command JscsFix :call JscsFix()
-  noremap <leader>j :JscsFix<CR>
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_c_checkers = ['gcc', 'make']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+" let g:syntastic_c_check_header = 0
+
 "}}}
