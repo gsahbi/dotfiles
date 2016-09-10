@@ -1,5 +1,13 @@
 #!/bin/sh
 
+
+# Install diff-highlight for git
+mkdir ~/.bin
+curl https://raw.githubusercontent.com/git/git/master/contrib/diff-highlight/diff-highlight > ~/.bin/diff-highlight
+chmod +x ~/.bin/diff-highlight
+
+
+
 brew="/usr/local/bin/brew"
 if [ -f "$brew" ]
 then
